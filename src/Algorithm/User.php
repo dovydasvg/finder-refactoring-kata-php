@@ -8,11 +8,8 @@ use DateTime;
 
 final class User
 {
-    /** @var string */
-    public $name;
-
-    /** @var DateTime */
-    public $birthDate;
+    private $name;
+    private $birthDate;
 
     public function getName(): string
     {

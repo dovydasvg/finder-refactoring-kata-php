@@ -7,6 +7,7 @@ namespace CodelyTV\FinderKataTest\Algorithm;
 use CodelyTV\FinderKata\Algorithm\Finder;
 use CodelyTV\FinderKata\Algorithm\FT;
 use CodelyTV\FinderKata\Algorithm\User;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 final class FinderTest extends TestCase
@@ -25,21 +26,25 @@ final class FinderTest extends TestCase
 
     protected function setUp()
     {
-        $this->sue            = new User();
-        $this->sue->name      = "Sue";
-        $this->sue->birthDate = new \DateTime("1950-01-01");
+        $this->sue = new User();
+        $this->sue->setName("Sue");
+        $birthday = new DateTime("1950-01-01");
+        $this->sue->setBirthDate($birthday);
 
-        $this->greg            = new User();
-        $this->greg->name      = "Greg";
-        $this->greg->birthDate = new \DateTime("1952-05-01");
+        $this->greg = new User();
+        $this->greg->setName("Greg");
+        $birthday = new DateTime("1952-05-01");
+        $this->greg->setBirthDate($birthday);
 
-        $this->sarah            = new User();
-        $this->sarah->name      = "Sarah";
-        $this->sarah->birthDate = new \DateTime("1982-01-01");
+        $this->sarah = new User();
+        $this->greg->setName("Sarah");
+        $birthday = new DateTime("1982-01-01");
+        $this->sarah->setBirthDate($birthday);
 
-        $this->mike            = new User();
-        $this->mike->name      = "Mike";
-        $this->mike->birthDate = new \DateTime("1979-01-01");
+        $this->mike = new User();
+        $this->mike->setName("Mike");
+        $birthday = new DateTime("1979-01-01");
+        $this->mike->setBirthDate($birthday);
     }
 
     /** @test */
