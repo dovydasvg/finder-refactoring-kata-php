@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace CodelyTV\FinderKata\Algorithm;
 
-final class F
+final class SearchResult
 {
     /** @var User */
-    public $p1;
+    public $User1;
 
     /** @var User */
-    public $p2;
+    public $User2;
 
     /** @var int */
     public $d;
