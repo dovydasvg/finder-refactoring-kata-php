@@ -35,23 +35,4 @@ final class Finder
 
         throw new InvalidArgumentException("No search logic matches the number $searchLogic .");
     }
-
-    /**
-     * @param array $searchResultList
-     * @param int $searchLogic
-     * @return mixed
-     */
-    private function findResultBySearchLogic(array $searchResultList, int $searchLogic)
-    {
-        $finalResult = null;
-        switch($searchLogic){
-            case SearchLogic::SMALLEST_DIFFERENCE:
-                $finalResult = $this->resultSorter->findResultWithSmallestDifference($searchResultList);
-                break;
-            case SearchLogic::BIGGEST_DIFFERENCE:
-                $finalResult = $this->resultSorter->findResultWithBiggestDifference($searchResultList);
-                break;
-        }
-        return $finalResult;
-    }
 }
