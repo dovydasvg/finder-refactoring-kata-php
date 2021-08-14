@@ -5,45 +5,28 @@ declare(strict_types = 1);
 namespace CodelyTV\FinderKataTest\Algorithm;
 
 use CodelyTV\FinderKata\Application\UserFinder\UserFinder;
+use CodelyTV\FinderKata\Domain\User\Factory\UserFactory;
 use CodelyTV\FinderKata\Domain\User\Model\User;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
 final class FinderTest extends TestCase
 {
-    /** @var User */
-    private $sue;
-
-    /** @var User */
-    private $greg;
-
-    /** @var User */
-    private $sarah;
-
-    /** @var User */
-    private $mike;
 
     protected function setUp()
     {
-        $this->sue = new User();
-        $this->sue->setName("Sue");
-        $birthday = new DateTime("1950-01-01");
-        $this->sue->setBirthDate($birthday);
+        $userFactory = new UserFactory();
 
-        $this->greg = new User();
-        $this->greg->setName("Greg");
-        $birthday = new DateTime("1952-05-01");
-        $this->greg->setBirthDate($birthday);
+        $users = [
+            "Sue" => new DateTime("1950-01-01"),
+            "Greg" => new DateTime("1952-05-01"),
+            "Sarah" => new DateTime("1982-01-01"),
+            "Mike" => new DateTime("1979-01-01")
+            ];
+        foreach ($users as $userName => $userBirthdate){
+            $this->{strtolower($userName)} = $userFactory->createUser($userName, $userBirthdate);
+        }
 
-        $this->sarah = new User();
-        $this->greg->setName("Sarah");
-        $birthday = new DateTime("1982-01-01");
-        $this->sarah->setBirthDate($birthday);
-
-        $this->mike = new User();
-        $this->mike->setName("Mike");
-        $birthday = new DateTime("1979-01-01");
-        $this->mike->setBirthDate($birthday);
     }
 
     /** @test */
