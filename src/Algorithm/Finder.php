@@ -22,7 +22,7 @@ final class Finder
         $searchResultList = $this->resultSorter->sortByUserBirthdays($this->users);
 
         if (count($searchResultList) < 1) {
-            return new SearchResult();
+            return $searchResultList[0];
         }
 
         return $this->findResultBySearchLogic($searchResultList, $searchLogic);

@@ -35,6 +35,10 @@ class ResultSorter
                 $searchResultList[] = $r;
             }
         }
+        if(count($searchResultList) < 1)
+        {
+            $searchResultList[0] = new SearchResult();
+        }
         return $searchResultList;
     }
 
