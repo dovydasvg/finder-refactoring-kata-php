@@ -7,11 +7,11 @@ namespace CodelyTV\FinderKata\Algorithm;
 final class Finder
 {
     /** @var User[] */
-    private $_p;
+    private $users;
 
-    public function __construct(array $p)
+    public function __construct(array $users)
     {
-        $this->_p = $p;
+        $this->users = $users;
     }
 
     public function find(int $ft): SearchResult
@@ -19,16 +19,18 @@ final class Finder
         /** @var SearchResult[] $searchResultList */
         $searchResultList = [];
 
-        for ($i = 0; $i < count($this->_p); $i++) {
-            for ($j = $i + 1; $j < count($this->_p); $j++) {
+        $usersCount = count($this->users);
+
+        for ($i = 0; $i < $usersCount; $i++) {
+            for ($j = $i + 1; $j < $usersCount; $j++) {
                 $r = new SearchResult();
 
-                if ($this->_p[$i]->getBirthDate() < $this->_p[$j]->getBirthDate()) {
-                    $r->user2 = $this->_p[$i];
-                    $r->user1 = $this->_p[$j];
+                if ($this->users[$i]->getBirthDate() < $this->users[$j]->getBirthDate()) {
+                    $r->user2 = $this->users[$i];
+                    $r->user1 = $this->users[$j];
                 } else {
-                    $r->user2 = $this->_p[$j];
-                    $r->user1 = $this->_p[$i];
+                    $r->user2 = $this->users[$j];
+                    $r->user1 = $this->users[$i];
                 }
 
                 $difference = $r->user1->getBirthDate()->getTimestamp()
