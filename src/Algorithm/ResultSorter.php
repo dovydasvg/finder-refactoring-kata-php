@@ -20,15 +20,15 @@ class ResultSorter
                 $birthdateDifference = new UserBirthdateDifferenceValueObject();
 
                 if ($user->getBirthDate() < $users[$j]->getBirthDate()) {
-                    $birthdateDifference->user2 = $user;
-                    $birthdateDifference->user1 = $users[$j];
+                    $birthdateDifference->setUserBornEarlier($user);
+                    $birthdateDifference->setUserBornLater($users[$j]);
                 } else {
-                    $birthdateDifference->user2 = $users[$j];
-                    $birthdateDifference->user1 = $user;
+                    $birthdateDifference->setUserBornEarlier($users[$j]);
+                    $birthdateDifference->setUserBornLater($user);
                 }
 
-                $difference = $birthdateDifference->user1->getBirthDate()->getTimestamp()
-                    - $birthdateDifference->user2->getBirthDate()->getTimestamp();
+                $difference = $birthdateDifference->getUserBornLater()->getBirthDate()->getTimestamp()
+                    - $birthdateDifference->getUserBornEarlier()->getBirthDate()->getTimestamp();
 
                 $birthdateDifference->setBirthdateDifference($difference);
 

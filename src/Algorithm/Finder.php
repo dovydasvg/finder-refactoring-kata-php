@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace CodelyTV\FinderKata\Algorithm;
 
-use InvalidArgumentException;
-
 final class Finder
 {
 

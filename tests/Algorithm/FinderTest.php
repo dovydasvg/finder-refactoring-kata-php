@@ -55,8 +55,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->findUsersWithSmallestBirthdateDifference();
 
-        $this->assertEquals(null, $result->user2);
-        $this->assertEquals(null, $result->user1);
+        $this->assertEquals(null, $result->getUserBornEarlier());
+        $this->assertEquals(null, $result->getUserBornLater());
     }
 
     /** @test */
@@ -68,8 +68,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->findUsersWithSmallestBirthdateDifference();
 
-        $this->assertEquals(null, $result->user2);
-        $this->assertEquals(null, $result->user1);
+        $this->assertEquals(null, $result->getUserBornEarlier());
+        $this->assertEquals(null, $result->getUserBornLater());
     }
 
     /** @test */
@@ -82,8 +82,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->findUsersWithSmallestBirthdateDifference();
 
-        $this->assertEquals($this->sue, $result->user2);
-        $this->assertEquals($this->greg, $result->user1);
+        $this->assertEquals($this->sue, $result->getUserBornEarlier());
+        $this->assertEquals($this->greg, $result->getUserBornLater());
     }
 
     /** @test */
@@ -96,8 +96,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->findUsersWithBiggestBirthdateDifference();
 
-        $this->assertEquals($this->greg, $result->user2);
-        $this->assertEquals($this->mike, $result->user1);
+        $this->assertEquals($this->greg, $result->getUserBornEarlier());
+        $this->assertEquals($this->mike, $result->getUserBornLater());
     }
 
     /** @test */
@@ -112,8 +112,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->findUsersWithBiggestBirthdateDifference();
 
-        $this->assertEquals($this->sue, $result->user2);
-        $this->assertEquals($this->sarah, $result->user1);
+        $this->assertEquals($this->sue, $result->getUserBornEarlier());
+        $this->assertEquals($this->sarah, $result->getUserBornLater());
     }
 
     /**
@@ -130,8 +130,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->findUsersWithSmallestBirthdateDifference();
 
-        $this->assertEquals($this->sue, $result->user2);
-        $this->assertEquals($this->greg, $result->user1);
+        $this->assertEquals($this->sue, $result->getUserBornEarlier());
+        $this->assertEquals($this->greg, $result->getUserBornLater());
     }
 
 }
