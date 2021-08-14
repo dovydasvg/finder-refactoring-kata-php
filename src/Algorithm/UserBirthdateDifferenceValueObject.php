@@ -20,9 +20,9 @@ class UserBirthdateDifferenceValueObject
     }
 
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getBirthdateDifference():int
+    public function getBirthdateDifference()
     {
         return $this->birthdateDifference;
     }
