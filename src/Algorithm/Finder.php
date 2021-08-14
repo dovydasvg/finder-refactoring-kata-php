@@ -25,19 +25,17 @@ final class Finder
             return new SearchResult();
         }
 
-        $finalResult = $searchResultList[0];
-
-        return $this->findResultBySearchLogic($searchResultList, $searchLogic, $finalResult);
+        return $this->findResultBySearchLogic($searchResultList, $searchLogic);
     }
 
     /**
      * @param array $searchResultList
      * @param int $searchLogic
-     * @param $finalResult
      * @return mixed
      */
-    private function findResultBySearchLogic(array $searchResultList, int $searchLogic, $finalResult)
+    private function findResultBySearchLogic(array $searchResultList, int $searchLogic)
     {
+        $finalResult = null;
         switch($searchLogic){
             case SearchLogic::SMALLEST_DIFFERENCE:
                 $finalResult = $this->resultSorter->findResultWithSmallestDifference($searchResultList);
