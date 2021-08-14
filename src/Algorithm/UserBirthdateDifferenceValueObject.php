@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace CodelyTV\FinderKata\Algorithm;
 
-class SearchResult
+class UserBirthdateDifferenceValueObject
 {
     public $user1;
     public $user2;

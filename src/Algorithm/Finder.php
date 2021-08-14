@@ -22,9 +22,9 @@ final class Finder
         $this->resultSorter = new ResultSorter();
     }
 
-    public function find(int $searchLogic): SearchResult
+    public function find(int $searchLogic): UserBirthdateDifferenceValueObject
     {
-        $searchResultList = $this->resultSorter->sortByUserBirthdays($this->users);
+        $searchResultList = $this->resultSorter->sortByUserBirthdates($this->users);
         if ($searchLogic === self::SEARCH_BY_SMALLEST_DIFFERENCE) {
             return $this->resultSorter->findResultWithSmallestDifference($searchResultList);
         }
