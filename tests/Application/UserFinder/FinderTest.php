@@ -4,9 +4,8 @@ declare(strict_types = 1);
 
 namespace CodelyTV\FinderKataTest\Algorithm;
 
-use CodelyTV\FinderKata\Algorithm\UserFinder;
-use CodelyTV\FinderKata\Algorithm\SearchLogic;
-use CodelyTV\FinderKata\Algorithm\User;
+use CodelyTV\FinderKata\Application\UserFinder\UserFinder;
+use CodelyTV\FinderKata\Domain\User\Model\User;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 

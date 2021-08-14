@@ -2,8 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace CodelyTV\FinderKata\Algorithm;
+namespace CodelyTV\FinderKata\Application\UserFinder;
 
+use CodelyTV\FinderKata\Domain\User\Model\User;
 use InvalidArgumentException;
 
 class UserBirthdateDifferenceValueObject

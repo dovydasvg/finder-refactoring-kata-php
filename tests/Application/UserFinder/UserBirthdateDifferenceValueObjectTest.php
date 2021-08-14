@@ -2,7 +2,7 @@
 
 namespace CodelyTV\FinderKataTest\Algorithm;
 
-use CodelyTV\FinderKata\Algorithm\UserBirthdateDifferenceValueObject;
+use CodelyTV\FinderKata\Application\UserFinder\UserBirthdateDifferenceValueObject;
 use PHPUnit\Framework\TestCase;
 
 class UserBirthdateDifferenceValueObjectTest extends TestCase
