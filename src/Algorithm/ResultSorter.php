@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace CodelyTV\FinderKata\Algorithm;
 
@@ -7,15 +8,12 @@ namespace CodelyTV\FinderKata\Algorithm;
 class ResultSorter
 {
     /**
-     * @param array $searchResultList
      * @param User[] $users
-     * @return array
+     * @return SearchResult[]
      */
-    public function compareUserBirthdays(array $searchResultList, $users): array
+    public function sortByUserBirthdays(array $users): array
     {
-
-
-
+        $searchResultList = [];
         $usersCount = count($users);
         foreach ($users as $i => $user) {
             for ($j = $i + 1; $j < $usersCount; $j++) {
