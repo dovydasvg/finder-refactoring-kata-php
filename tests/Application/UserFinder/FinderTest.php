@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace CodelyTV\FinderKataTest\Algorithm;
+namespace CodelyTV\FinderKataTest\Application\UserFinder;
 
 use CodelyTV\FinderKata\Application\UserFinder\UserFinder;
 use CodelyTV\FinderKata\Domain\User\Factory\UserFactory;
