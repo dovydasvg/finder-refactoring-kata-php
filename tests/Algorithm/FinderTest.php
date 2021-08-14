@@ -53,7 +53,7 @@ final class FinderTest extends TestCase
         $list   = [];
         $finder = new Finder($list);
 
-        $result = $finder->find(SearchLogic::SMALLEST_DIFFERENCE);
+        $result = $finder->find(Finder::SEARCH_BY_SMALLEST_DIFFERENCE);
 
         $this->assertEquals(null, $result->user2);
         $this->assertEquals(null, $result->user1);
@@ -66,7 +66,7 @@ final class FinderTest extends TestCase
         $list[] = $this->sue;
         $finder = new Finder($list);
 
-        $result = $finder->find(SearchLogic::SMALLEST_DIFFERENCE);
+        $result = $finder->find(Finder::SEARCH_BY_SMALLEST_DIFFERENCE);
 
         $this->assertEquals(null, $result->user2);
         $this->assertEquals(null, $result->user1);
@@ -80,7 +80,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(SearchLogic::SMALLEST_DIFFERENCE);
+        $result = $finder->find(Finder::SEARCH_BY_SMALLEST_DIFFERENCE);
 
         $this->assertEquals($this->sue, $result->user2);
         $this->assertEquals($this->greg, $result->user1);
@@ -94,7 +94,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(SearchLogic::BIGGEST_DIFFERENCE);
+        $result = $finder->find(Finder::SEARCH_BY_BIGGEST_DIFFERENCE);
 
         $this->assertEquals($this->greg, $result->user2);
         $this->assertEquals($this->mike, $result->user1);
@@ -110,7 +110,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(SearchLogic::BIGGEST_DIFFERENCE);
+        $result = $finder->find(Finder::SEARCH_BY_BIGGEST_DIFFERENCE);
 
         $this->assertEquals($this->sue, $result->user2);
         $this->assertEquals($this->sarah, $result->user1);
@@ -128,7 +128,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(SearchLogic::SMALLEST_DIFFERENCE);
+        $result = $finder->find(Finder::SEARCH_BY_SMALLEST_DIFFERENCE);
 
         $this->assertEquals($this->sue, $result->user2);
         $this->assertEquals($this->greg, $result->user1);
