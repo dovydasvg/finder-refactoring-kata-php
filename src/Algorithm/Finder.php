@@ -16,37 +16,37 @@ final class Finder
 
     public function find(int $ft): SearchResult
     {
-        /** @var SearchResult[] $tr */
-        $tr = [];
+        /** @var SearchResult[] $searchResultList */
+        $searchResultList = [];
 
         for ($i = 0; $i < count($this->_p); $i++) {
             for ($j = $i + 1; $j < count($this->_p); $j++) {
                 $r = new SearchResult();
 
                 if ($this->_p[$i]->getBirthDate() < $this->_p[$j]->getBirthDate()) {
-                    $r->User1 = $this->_p[$i];
-                    $r->User2 = $this->_p[$j];
+                    $r->user2 = $this->_p[$i];
+                    $r->user1 = $this->_p[$j];
                 } else {
-                    $r->User1 = $this->_p[$j];
-                    $r->User2 = $this->_p[$i];
+                    $r->user2 = $this->_p[$j];
+                    $r->user1 = $this->_p[$i];
                 }
 
-                $difference = $r->User2->getBirthDate()->getTimestamp()
-                    - $r->User1->getBirthDate()->getTimestamp();
+                $difference = $r->user1->getBirthDate()->getTimestamp()
+                    - $r->user2->getBirthDate()->getTimestamp();
 
                 $r->setBirthdateDifference($difference);
 
-                $tr[] = $r;
+                $searchResultList[] = $r;
             }
         }
 
-        if (count($tr) < 1) {
+        if (count($searchResultList) < 1) {
             return new SearchResult();
         }
 
-        $answer = $tr[0];
+        $answer = $searchResultList[0];
 
-        foreach ($tr as $result) {
+        foreach ($searchResultList as $result) {
             switch ($ft) {
                 case FT::ONE:
                     if ($result->getBirthdateDifference() < $answer->getBirthdateDifference()) {

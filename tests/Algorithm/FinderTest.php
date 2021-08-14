@@ -55,8 +55,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FT::ONE);
 
-        $this->assertEquals(null, $result->User1);
-        $this->assertEquals(null, $result->User2);
+        $this->assertEquals(null, $result->user2);
+        $this->assertEquals(null, $result->user1);
     }
 
     /** @test */
@@ -68,8 +68,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FT::ONE);
 
-        $this->assertEquals(null, $result->User1);
-        $this->assertEquals(null, $result->User2);
+        $this->assertEquals(null, $result->user2);
+        $this->assertEquals(null, $result->user1);
     }
 
     /** @test */
@@ -82,8 +82,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FT::ONE);
 
-        $this->assertEquals($this->sue, $result->User1);
-        $this->assertEquals($this->greg, $result->User2);
+        $this->assertEquals($this->sue, $result->user2);
+        $this->assertEquals($this->greg, $result->user1);
     }
 
     /** @test */
@@ -96,8 +96,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FT::TWO);
 
-        $this->assertEquals($this->greg, $result->User1);
-        $this->assertEquals($this->mike, $result->User2);
+        $this->assertEquals($this->greg, $result->user2);
+        $this->assertEquals($this->mike, $result->user1);
     }
 
     /** @test */
@@ -112,8 +112,8 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FT::TWO);
 
-        $this->assertEquals($this->sue, $result->User1);
-        $this->assertEquals($this->sarah, $result->User2);
+        $this->assertEquals($this->sue, $result->user2);
+        $this->assertEquals($this->sarah, $result->user1);
     }
 
     /**
@@ -130,7 +130,7 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FT::ONE);
 
-        $this->assertEquals($this->sue, $result->User1);
-        $this->assertEquals($this->greg, $result->User2);
+        $this->assertEquals($this->sue, $result->user2);
+        $this->assertEquals($this->greg, $result->user1);
     }
 }

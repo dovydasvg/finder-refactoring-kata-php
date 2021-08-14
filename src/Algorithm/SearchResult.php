@@ -6,8 +6,8 @@ namespace CodelyTV\FinderKata\Algorithm;
 
 class SearchResult
 {
-    public $User2;
-    public $User1;
+    public $user1;
+    public $user2;
     private $birthdateDifference;
 
     public function __construct(User $user1=null, User $user2=null, int $birthdateDifference=null)
