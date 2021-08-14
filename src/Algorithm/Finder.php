@@ -4,8 +4,13 @@ declare(strict_types = 1);
 
 namespace CodelyTV\FinderKata\Algorithm;
 
+use InvalidArgumentException;
+
 final class Finder
 {
+    const SEARCH_BY_SMALLEST_DIFFERENCE = 1;
+    const SEARCH_BY_BIGGEST_DIFFERENCE = 2;
+
     /** @var User[] */
     private $users;
     /** @var ResultSorter */
@@ -20,7 +25,15 @@ final class Finder
     public function find(int $searchLogic): SearchResult
     {
         $searchResultList = $this->resultSorter->sortByUserBirthdays($this->users);
-        return $this->findResultBySearchLogic($searchResultList, $searchLogic);
+        if ($searchLogic === self::SEARCH_BY_SMALLEST_DIFFERENCE) {
+            return $this->resultSorter->findResultWithSmallestDifference($searchResultList);
+        }
+
+        if($searchLogic === self::SEARCH_BY_BIGGEST_DIFFERENCE) {
+            return $this->resultSorter->findResultWithBiggestDifference($searchResultList);
+        }
+
+        throw new InvalidArgumentException("No search logic matches the number $searchLogic .");
     }
 
     /**

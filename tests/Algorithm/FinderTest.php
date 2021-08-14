@@ -133,4 +133,21 @@ final class FinderTest extends TestCase
         $this->assertEquals($this->sue, $result->user2);
         $this->assertEquals($this->greg, $result->user1);
     }
+
+    /**
+     * @test
+     */
+    public function should_return_an_exception_when_searchlogic_doesnt_exist()
+    {
+        $list   = [];
+        $list[] = $this->sue;
+        $list[] = $this->sarah;
+        $list[] = $this->mike;
+        $list[] = $this->greg;
+        $finder = new Finder($list);
+
+        $this->expectException(\InvalidArgumentException::class);
+
+        $result = $finder->find(3);
+    }
 }
