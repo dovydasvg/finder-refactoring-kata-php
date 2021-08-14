@@ -8,29 +8,52 @@ final class Finder
 {
     /** @var User[] */
     private $users;
+    /** @var ResultSorter */
+    private $resultSorter;
 
     public function __construct(array $users)
     {
         $this->users = $users;
+        $this->resultSorter = new ResultSorter();
     }
 
-    public function find(int $ft): SearchResult
+    public function find(int $searchLogic): SearchResult
     {
         /** @var SearchResult[] $searchResultList */
         $searchResultList = [];
 
-        $usersCount = count($this->users);
 
-        for ($i = 0; $i < $usersCount; $i++) {
+        $searchResultList = $this->compareUserBirthdays($searchResultList);
+
+        if (count($searchResultList) < 1) {
+            return new SearchResult();
+        }
+
+        $finalResult = $searchResultList[0];
+
+        return $this->findResultBySearchLogic($searchResultList, $searchLogic, $finalResult);
+    }
+
+    /**
+     * @param array $searchResultList
+     * @return array
+     */
+    private function compareUserBirthdays(array $searchResultList): array
+    {
+
+
+
+        $usersCount = count($this->users);
+        foreach ($this->users as $i => $user) {
             for ($j = $i + 1; $j < $usersCount; $j++) {
                 $r = new SearchResult();
 
-                if ($this->users[$i]->getBirthDate() < $this->users[$j]->getBirthDate()) {
-                    $r->user2 = $this->users[$i];
+                if ($user->getBirthDate() < $this->users[$j]->getBirthDate()) {
+                    $r->user2 = $user;
                     $r->user1 = $this->users[$j];
                 } else {
                     $r->user2 = $this->users[$j];
-                    $r->user1 = $this->users[$i];
+                    $r->user1 = $user;
                 }
 
                 $difference = $r->user1->getBirthDate()->getTimestamp()
@@ -41,29 +64,25 @@ final class Finder
                 $searchResultList[] = $r;
             }
         }
+        return $searchResultList;
+    }
 
-        if (count($searchResultList) < 1) {
-            return new SearchResult();
+    /**
+     * @param array $searchResultList
+     * @param int $searchLogic
+     * @param $finalResult
+     * @return mixed
+     */
+    private function findResultBySearchLogic(array $searchResultList, int $searchLogic, $finalResult)
+    {
+        switch($searchLogic){
+            case SearchLogic::SMALLEST_DIFFERENCE:
+                $finalResult = $this->resultSorter->findResultWithSmallestDifference($searchResultList);
+                break;
+            case SearchLogic::BIGGEST_DIFFERENCE:
+                $finalResult = $this->resultSorter->findResultWithBiggestDifference($searchResultList);
+                break;
         }
-
-        $answer = $searchResultList[0];
-
-        foreach ($searchResultList as $result) {
-            switch ($ft) {
-                case FT::ONE:
-                    if ($result->getBirthdateDifference() < $answer->getBirthdateDifference()) {
-                        $answer = $result;
-                    }
-                    break;
-
-                case FT::TWO:
-                    if ($result->getBirthdateDifference() > $answer->getBirthdateDifference()) {
-                        $answer = $result;
-                    }
-                    break;
-            }
-        }
-
-        return $answer;
+        return $finalResult;
     }
 }
