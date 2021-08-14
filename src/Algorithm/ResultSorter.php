@@ -6,6 +6,39 @@ namespace CodelyTV\FinderKata\Algorithm;
 
 class ResultSorter
 {
+    /**
+     * @param array $searchResultList
+     * @param User[] $users
+     * @return array
+     */
+    public function compareUserBirthdays(array $searchResultList, $users): array
+    {
+
+
+
+        $usersCount = count($users);
+        foreach ($users as $i => $user) {
+            for ($j = $i + 1; $j < $usersCount; $j++) {
+                $r = new SearchResult();
+
+                if ($user->getBirthDate() < $users[$j]->getBirthDate()) {
+                    $r->user2 = $user;
+                    $r->user1 = $users[$j];
+                } else {
+                    $r->user2 = $users[$j];
+                    $r->user1 = $user;
+                }
+
+                $difference = $r->user1->getBirthDate()->getTimestamp()
+                    - $r->user2->getBirthDate()->getTimestamp();
+
+                $r->setBirthdateDifference($difference);
+
+                $searchResultList[] = $r;
+            }
+        }
+        return $searchResultList;
+    }
 
     public function findResultWithSmallestDifference(array $searchResultList)
     {

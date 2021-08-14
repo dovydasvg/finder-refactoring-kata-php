@@ -23,7 +23,7 @@ final class Finder
         $searchResultList = [];
 
 
-        $searchResultList = $this->compareUserBirthdays($searchResultList);
+        $searchResultList = $this->resultSorter->compareUserBirthdays($searchResultList, $this->users);
 
         if (count($searchResultList) < 1) {
             return new SearchResult();
@@ -32,39 +32,6 @@ final class Finder
         $finalResult = $searchResultList[0];
 
         return $this->findResultBySearchLogic($searchResultList, $searchLogic, $finalResult);
-    }
-
-    /**
-     * @param array $searchResultList
-     * @return array
-     */
-    private function compareUserBirthdays(array $searchResultList): array
-    {
-
-
-
-        $usersCount = count($this->users);
-        foreach ($this->users as $i => $user) {
-            for ($j = $i + 1; $j < $usersCount; $j++) {
-                $r = new SearchResult();
-
-                if ($user->getBirthDate() < $this->users[$j]->getBirthDate()) {
-                    $r->user2 = $user;
-                    $r->user1 = $this->users[$j];
-                } else {
-                    $r->user2 = $this->users[$j];
-                    $r->user1 = $user;
-                }
-
-                $difference = $r->user1->getBirthDate()->getTimestamp()
-                    - $r->user2->getBirthDate()->getTimestamp();
-
-                $r->setBirthdateDifference($difference);
-
-                $searchResultList[] = $r;
-            }
-        }
-        return $searchResultList;
     }
 
     /**
