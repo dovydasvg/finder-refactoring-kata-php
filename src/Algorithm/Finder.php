@@ -8,8 +8,6 @@ use InvalidArgumentException;
 
 final class Finder
 {
-    const SEARCH_BY_SMALLEST_DIFFERENCE = 1;
-    const SEARCH_BY_BIGGEST_DIFFERENCE = 2;
 
     /** @var User[] */
     private $users;
@@ -22,17 +20,16 @@ final class Finder
         $this->resultSorter = new ResultSorter();
     }
 
-    public function find(int $searchLogic): UserBirthdateDifferenceValueObject
+    public function findUsersWithBiggestBirthdateDifference(): UserBirthdateDifferenceValueObject
     {
         $searchResultList = $this->resultSorter->sortByUserBirthdates($this->users);
-        if ($searchLogic === self::SEARCH_BY_SMALLEST_DIFFERENCE) {
-            return $this->resultSorter->findResultWithSmallestDifference($searchResultList);
-        }
-
-        if($searchLogic === self::SEARCH_BY_BIGGEST_DIFFERENCE) {
-            return $this->resultSorter->findResultWithBiggestDifference($searchResultList);
-        }
-
-        throw new InvalidArgumentException("No search logic matches the number $searchLogic .");
+        return $this->resultSorter->findResultWithBiggestDifference($searchResultList);
     }
+
+    public function findUsersWithSmallestBirthdateDifference(): UserBirthdateDifferenceValueObject
+    {
+        $searchResultList = $this->resultSorter->sortByUserBirthdates($this->users);
+        return $this->resultSorter->findResultWithSmallestDifference($searchResultList);
+    }
+
 }
