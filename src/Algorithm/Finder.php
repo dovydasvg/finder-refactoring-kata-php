@@ -20,11 +20,6 @@ final class Finder
     public function find(int $searchLogic): SearchResult
     {
         $searchResultList = $this->resultSorter->sortByUserBirthdays($this->users);
-
-        if (count($searchResultList) < 1) {
-            return $searchResultList[0];
-        }
-
         return $this->findResultBySearchLogic($searchResultList, $searchLogic);
     }
 
