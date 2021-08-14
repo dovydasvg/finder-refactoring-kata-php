@@ -13,26 +13,17 @@ class ResultSorter
      */
     public function sortByUserBirthdates(array $users): array
     {
-        $searchResultList = [];
         $usersCount = count($users);
+        $searchResultList = [];
         foreach ($users as $i => $user) {
             for ($j = $i + 1; $j < $usersCount; $j++) {
-                $birthdateDifference = new UserBirthdateDifferenceValueObject();
+                $birthdateDifferenceValueObject = new UserBirthdateDifferenceValueObject();
 
-                if ($user->getBirthDate() < $users[$j]->getBirthDate()) {
-                    $birthdateDifference->setUserBornEarlier($user);
-                    $birthdateDifference->setUserBornLater($users[$j]);
-                } else {
-                    $birthdateDifference->setUserBornEarlier($users[$j]);
-                    $birthdateDifference->setUserBornLater($user);
-                }
+                $this->setValueObjectUsersByBirthdate($user, $users[$j], $birthdateDifferenceValueObject);
 
-                $difference = $birthdateDifference->getUserBornLater()->getBirthDate()->getTimestamp()
-                    - $birthdateDifference->getUserBornEarlier()->getBirthDate()->getTimestamp();
+                $this->setValueObjectBirthdateDifference($birthdateDifferenceValueObject);
 
-                $birthdateDifference->setBirthdateDifference($difference);
-
-                $searchResultList[] = $birthdateDifference;
+                $searchResultList[] = $birthdateDifferenceValueObject;
             }
         }
         if(count($searchResultList) < 1)
@@ -66,5 +57,35 @@ class ResultSorter
             return $first;
         }
         return $second;
+    }
+
+    /**
+     * @param User $user
+     * @param $users
+     * @param UserBirthdateDifferenceValueObject $birthdateDifferenceValueObject
+     */
+    private function setValueObjectUsersByBirthdate(User $user, $users, UserBirthdateDifferenceValueObject $birthdateDifferenceValueObject)
+    {
+        if ($user->getBirthDate() < $users->getBirthDate()) {
+            $birthdateDifferenceValueObject->setUserBornEarlier($user);
+            $birthdateDifferenceValueObject->setUserBornLater($users);
+        } else {
+            $birthdateDifferenceValueObject->setUserBornEarlier($users);
+            $birthdateDifferenceValueObject->setUserBornLater($user);
+        }
+    }
+    /**
+     * @param UserBirthdateDifferenceValueObject $birthdateDifferenceValueObject
+     */
+    private function setValueObjectBirthdateDifference(UserBirthdateDifferenceValueObject $birthdateDifferenceValueObject)
+    {
+        $userBornEarlier = $birthdateDifferenceValueObject->getUserBornEarlier();
+        $userBornLater = $birthdateDifferenceValueObject->getUserBornLater();
+        if($userBornEarlier === null || $userBornLater === null){
+            return;
+        }
+        $difference = $userBornLater->getBirthDate()->getTimestamp()
+            - $userBornEarlier->getBirthDate()->getTimestamp();
+        $birthdateDifferenceValueObject->setBirthdateDifference($difference);
     }
 }
