@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace CodelyTV\FinderKataTest\Algorithm;
 
-use CodelyTV\FinderKata\Algorithm\Finder;
+use CodelyTV\FinderKata\Algorithm\UserFinder;
 use CodelyTV\FinderKata\Algorithm\SearchLogic;
 use CodelyTV\FinderKata\Algorithm\User;
 use DateTime;
@@ -51,7 +51,7 @@ final class FinderTest extends TestCase
     public function should_return_empty_when_given_empty_list()
     {
         $list   = [];
-        $finder = new Finder($list);
+        $finder = new UserFinder($list);
 
         $result = $finder->findUsersWithSmallestBirthdateDifference();
 
@@ -64,7 +64,7 @@ final class FinderTest extends TestCase
     {
         $list   = [];
         $list[] = $this->sue;
-        $finder = new Finder($list);
+        $finder = new UserFinder($list);
 
         $result = $finder->findUsersWithSmallestBirthdateDifference();
 
@@ -78,7 +78,7 @@ final class FinderTest extends TestCase
         $list   = [];
         $list[] = $this->sue;
         $list[] = $this->greg;
-        $finder = new Finder($list);
+        $finder = new UserFinder($list);
 
         $result = $finder->findUsersWithSmallestBirthdateDifference();
 
@@ -92,7 +92,7 @@ final class FinderTest extends TestCase
         $list   = [];
         $list[] = $this->mike;
         $list[] = $this->greg;
-        $finder = new Finder($list);
+        $finder = new UserFinder($list);
 
         $result = $finder->findUsersWithBiggestBirthdateDifference();
 
@@ -108,7 +108,7 @@ final class FinderTest extends TestCase
         $list[] = $this->sarah;
         $list[] = $this->mike;
         $list[] = $this->greg;
-        $finder = new Finder($list);
+        $finder = new UserFinder($list);
 
         $result = $finder->findUsersWithBiggestBirthdateDifference();
 
@@ -126,7 +126,7 @@ final class FinderTest extends TestCase
         $list[] = $this->sarah;
         $list[] = $this->mike;
         $list[] = $this->greg;
-        $finder = new Finder($list);
+        $finder = new UserFinder($list);
 
         $result = $finder->findUsersWithSmallestBirthdateDifference();
 

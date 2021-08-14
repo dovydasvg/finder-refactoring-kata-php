@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace CodelyTV\FinderKata\Algorithm;
 
-final class Finder
+final class UserFinder
 {
 
     /** @var User[] */
@@ -20,14 +20,14 @@ final class Finder
 
     public function findUsersWithBiggestBirthdateDifference(): UserBirthdateDifferenceValueObject
     {
-        $searchResultList = $this->resultSorter->sortByUserBirthdates($this->users);
-        return $this->resultSorter->findResultWithBiggestDifference($searchResultList);
+        $sortedUsersBirthdateDifferencesList = $this->resultSorter->sortByUserBirthdates($this->users);
+        return $this->resultSorter->findResultWithBiggestDifference($sortedUsersBirthdateDifferencesList);
     }
 
     public function findUsersWithSmallestBirthdateDifference(): UserBirthdateDifferenceValueObject
     {
-        $searchResultList = $this->resultSorter->sortByUserBirthdates($this->users);
-        return $this->resultSorter->findResultWithSmallestDifference($searchResultList);
+        $sortedUsersBirthdateDifferencesList = $this->resultSorter->sortByUserBirthdates($this->users);
+        return $this->resultSorter->findResultWithSmallestDifference($sortedUsersBirthdateDifferencesList);
     }
 
 }
