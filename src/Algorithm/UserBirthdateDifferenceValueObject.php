@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace CodelyTV\FinderKata\Algorithm;
 
+use InvalidArgumentException;
+
 class UserBirthdateDifferenceValueObject
 {
     public $user1;
@@ -27,6 +29,9 @@ class UserBirthdateDifferenceValueObject
      */
     public function setBirthdateDifference(int $birthdateDifference)
     {
+        if($birthdateDifference < 0){
+            throw new InvalidArgumentException("Birthdate Difference must be a positive integer.");
+        }
         $this->birthdateDifference = $birthdateDifference;
     }
 
