@@ -22,8 +22,14 @@ final class UserFinder
 
     public function findUsersWithBiggestBirthdateDifference(): UserBirthdateDifferenceValueObject
     {
-        $sortedUsersBirthdateDifferencesList = $this->resultSorter->sortByUserBirthdates($this->users);
-        return $this->resultSorter->findResultWithBiggestDifference($sortedUsersBirthdateDifferencesList);
+        if(count($this->users) < 2){
+            return new UserBirthdateDifferenceValueObject();
+        }
+        $sortedUsers = $this->resultSorter->sortUsersByBirthdate($this->users);
+        $lastUserIndex = count($sortedUsers)-1;
+        $difference = $sortedUsers[$lastUserIndex]->getBirthDate()->getTimestamp()
+            - $sortedUsers[0]->getBirthDate()->getTimestamp();
+        return new UserBirthdateDifferenceValueObject($sortedUsers[$lastUserIndex],$sortedUsers[0],$difference);
     }
 
     public function findUsersWithSmallestBirthdateDifference(): UserBirthdateDifferenceValueObject
