@@ -6,7 +6,7 @@ namespace CodelyTV\FinderKata\Application\UserFinder;
 
 use CodelyTV\FinderKata\Domain\User\Model\User;
 
-class ResultSorter
+class UserSorter
 {
 
     public function sortUsersByBirthdate(array $users): array

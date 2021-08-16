@@ -4,7 +4,7 @@
 namespace CodelyTV\FinderKataTest\Application\UserFinder;
 
 
-use CodelyTV\FinderKata\Application\UserFinder\ResultSorter;
+use CodelyTV\FinderKata\Application\UserFinder\UserSorter;
 use CodelyTV\FinderKata\Domain\User\Factory\UserFactory;
 use DateTime;
 use PHPUnit\Framework\TestCase;
@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 final class ResultSorterTest extends TestCase
 {
     /**
-     * @var ResultSorter
+     * @var UserSorter
      */
     private $resultSorter;
     /**
@@ -26,7 +26,7 @@ final class ResultSorterTest extends TestCase
 
     public function setUp()
     {
-        $this->resultSorter = new ResultSorter();
+        $this->resultSorter = new UserSorter();
         $this->userFactory = new UserFactory();
         $this->users = [];
 
@@ -46,7 +46,7 @@ final class ResultSorterTest extends TestCase
      */
     public function result_sorter_class_exists()
     {
-        $this->assertInstanceOf(ResultSorter::class,$this->resultSorter);
+        $this->assertInstanceOf(UserSorter::class,$this->resultSorter);
     }
 
     /**

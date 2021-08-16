@@ -11,13 +11,13 @@ final class UserFinder
 
     /** @var User[] */
     private $users;
-    /** @var ResultSorter */
+    /** @var UserSorter */
     private $resultSorter;
 
     public function __construct(array $users)
     {
         $this->users = $users;
-        $this->resultSorter = new ResultSorter();
+        $this->resultSorter = new UserSorter();
     }
 
     public function findUsersWithBiggestBirthdateDifference(): UserBirthdateDifferenceValueObject
