@@ -89,4 +89,21 @@ class ResultSorter
             - $userBornEarlier->getBirthDate()->getTimestamp();
         $birthdateDifferenceValueObject->setBirthdateDifference($difference);
     }
+
+    public function sortUsersByBirthdate(array $users): array
+    {
+        usort($users, 'self::sortingByBirthdate');
+        return $users;
+    }
+
+    private static function sortingByBirthdate(User $a,User $b)
+    {
+        $firstBirthdate = $a->getBirthDate();
+        $secondBirthdate = $b->getBirthDate();
+        if ($firstBirthdate === $secondBirthdate) {
+            return 0;
+        }
+        return ($firstBirthdate < $secondBirthdate) ? -1:1;
+
+    }
 }

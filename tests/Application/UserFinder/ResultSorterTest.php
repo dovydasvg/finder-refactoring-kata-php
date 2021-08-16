@@ -19,11 +19,16 @@ final class ResultSorterTest extends TestCase
      * @var UserFactory
      */
     private $userFactory;
+    /**
+     * @var array
+     */
+    private $users;
 
     public function setUp()
     {
         $this->resultSorter = new ResultSorter();
         $this->userFactory = new UserFactory();
+        $this->users = [];
 
         $users = [
             "Sue" => new DateTime("1950-01-01"),
@@ -32,7 +37,7 @@ final class ResultSorterTest extends TestCase
             "Mike" => new DateTime("1979-01-01")
         ];
         foreach ($users as $userName => $userBirthdate){
-            $this->{strtolower($userName)} = $this->userFactory->createUser($userName, $userBirthdate);
+            $this->users[] = $this->{strtolower($userName)} = $this->userFactory->createUser($userName, $userBirthdate);
         }
     }
 
@@ -42,6 +47,21 @@ final class ResultSorterTest extends TestCase
     public function result_sorter_class_exists()
     {
         $this->assertInstanceOf(ResultSorter::class,$this->resultSorter);
+    }
+
+    /**
+     * @test
+     */
+    public function result_sorter_returns_sorted_user_array_by_birthdate()
+    {
+        $sorted_users = $this->resultSorter->sortUsersByBirthdate($this->users);
+        $correct_sorted_users_array = [
+            0 => $this->sue,
+            1 => $this->greg,
+            2 => $this->mike,
+            3 => $this->sarah
+        ];
+        $this->assertEquals($correct_sorted_users_array, $sorted_users);
     }
 
 }
