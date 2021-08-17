@@ -38,9 +38,36 @@ final class UserFinder
             return new UserBirthdateDifferenceValueObject();
         }
         $sortedUsers = $this->resultSorter->sortUsersByBirthdate($this->users);
-        $difference = $sortedUsers[1]->getBirthDate()->getTimestamp()
-            - $sortedUsers[0]->getBirthDate()->getTimestamp();
-        return new UserBirthdateDifferenceValueObject($sortedUsers[1],$sortedUsers[0],$difference);
+        print_r($sortedUsers);
+        return $this->findSmallestBirthdateDifference($sortedUsers);
+    }
+
+    /**
+     * @param array $sortedUsers
+     * @return UserBirthdateDifferenceValueObject
+     */
+    private function findSmallestBirthdateDifference(array $sortedUsers): UserBirthdateDifferenceValueObject
+    {
+        $smallestDifference = null;
+        $firstUser = null;
+        $slightlyOlderUser = null;
+        for ($i = 0, $iMax = count($sortedUsers); $i < $iMax - 1; $i++) {
+            $User1 = $sortedUsers[$i];
+            $User2 = $sortedUsers[$i + 1];
+            if ($smallestDifference === null) {
+                $firstUser = $User1;
+                $slightlyOlderUser = $User2;
+                $smallestDifference = $slightlyOlderUser->getBirthdate()->getTimestamp() - $firstUser->getBirthdate()->getTimestamp();
+            } else {
+                $difference = $User2->getBirthdate()->getTimestamp() - $User1->getBirthdate()->getTimestamp();
+                if ($difference < $smallestDifference) {
+                    $firstUser = $User1;
+                    $slightlyOlderUser = $User2;
+                    $smallestDifference = $difference;
+                }
+            }
+        }
+        return new UserBirthdateDifferenceValueObject($slightlyOlderUser, $firstUser, $smallestDifference);
     }
 
 }
